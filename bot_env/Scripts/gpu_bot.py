@@ -21,9 +21,9 @@ def check_avail(url, hdr, version):
             requests.post(
                 f"https://api.telegram.org/bot{bot_secret}/sendMessage", data=data
             )
-            print(current_time, "3070 IN STOCK")
+            print(current_time, "3070 \033[1;32;40m IN STOCK \033[0;0m")
         else:
-            print(current_time, "3070 OUT OF STOCK")
+            print(current_time, "3070 \033[1;31;40m OUT OF STOCK \033[0;0m")
 
     if version == "3060":
         if "Out of stock" not in span_text:
@@ -34,9 +34,9 @@ def check_avail(url, hdr, version):
             requests.post(
                 f"https://api.telegram.org/bot{bot_secret}/sendMessage", data=data
             )
-            print(current_time, "3060 IN STOCK")
+            print(current_time, "3060 \033[1;32;40m IN STOCK \033[0;0m")
         else:
-            print(current_time, "3060 OUT OF STOCK")
+            print(current_time, "3060 \033[1;31;40m OUT OF STOCK \033[0;0m")
 
 
 def main():
