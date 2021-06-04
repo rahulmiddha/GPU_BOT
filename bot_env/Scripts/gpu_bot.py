@@ -8,7 +8,13 @@ def check_avail(url, hdr, version):
     http = urllib3.PoolManager()
     response = http.request("GET", url, hdr)
     soup = BeautifulSoup(response.data, "html.parser")
-    span_text = soup.find_all("span", {"class": "rs2"})[0].text
+    try:
+        span_text = soup.find_all("span", {"class": "rs2"})[0].text
+    # adding exception for index errors
+    except IndexError:
+        print("\033[93m INDEX ERROR \033[0;0m")
+        time.sleep(300)
+        span_text = soup.find_all("span", {"class": "rs2"})[0].text
 
     current_time = time.strftime("%d-%m-%Y : %H:%M:%S", time.localtime())
 
