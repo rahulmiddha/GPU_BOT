@@ -1,0 +1,4 @@
+.vscode
+*.pyc
+bot_env/Lib/*
+bot_env/Scripts/*.exe
