@@ -39,8 +39,8 @@ def check_avail(version):
             + version
             + ".html"
         )
-        chat_id = "1792211518"
-        bot_secret = "1871383574:AAFOCtshtRQx78qPZPEWGeODiP2cDYCkjDg"
+        chat_id = "****"
+        bot_secret = "******"
         data = {"text": f"{text}", "chat_id": f"{chat_id}"}
         requests.post(
             f"https://api.telegram.org/bot{bot_secret}/sendMessage", data=data
