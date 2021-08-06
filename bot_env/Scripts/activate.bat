@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=D:\PythonFiles\GPU_BOT-master\bot_env
+=======
+set VIRTUAL_ENV=C:\Users\Rahul Middha\Desktop\Python\bot_gpu\bot_env
+>>>>>>> bf37c75e2d75d6ecfefb40decf7678c839c4de9c
 
 if not defined PROMPT set PROMPT=$P$G
 

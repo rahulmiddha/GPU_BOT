@@ -18,7 +18,11 @@ deactivate () {
     # be called to get it to forget past commands.  Without forgetting
     # past commands the $PATH changes we made may not be respected
     if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
+<<<<<<< HEAD
         hash -r 2> /dev/null
+=======
+        hash -r
+>>>>>>> bf37c75e2d75d6ecfefb40decf7678c839c4de9c
     fi
 
     if [ -n "${_OLD_VIRTUAL_PS1:-}" ] ; then
@@ -37,7 +41,11 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV="D:\PythonFiles\GPU_BOT-master\bot_env"
+=======
+VIRTUAL_ENV="C:\Users\Rahul Middha\Desktop\Python\bot_gpu\bot_env"
+>>>>>>> bf37c75e2d75d6ecfefb40decf7678c839c4de9c
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -54,7 +62,21 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
+<<<<<<< HEAD
     PS1="(bot_env) ${PS1:-}"
+=======
+    if [ "x(bot_env) " != x ] ; then
+	PS1="(bot_env) ${PS1:-}"
+    else
+    if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
+        # special case for Aspen magic directories
+        # see https://aspen.io/
+        PS1="[`basename \`dirname \"$VIRTUAL_ENV\"\``] $PS1"
+    else
+        PS1="(`basename \"$VIRTUAL_ENV\"`)$PS1"
+    fi
+    fi
+>>>>>>> bf37c75e2d75d6ecfefb40decf7678c839c4de9c
     export PS1
 fi
 
@@ -62,5 +84,9 @@ fi
 # be called to get it to forget past commands.  Without forgetting
 # past commands the $PATH changes we made may not be respected
 if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
+<<<<<<< HEAD
     hash -r 2> /dev/null
+=======
+    hash -r
+>>>>>>> bf37c75e2d75d6ecfefb40decf7678c839c4de9c
 fi
