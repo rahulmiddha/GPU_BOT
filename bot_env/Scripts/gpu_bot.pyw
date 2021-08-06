@@ -4,51 +4,8 @@ import urllib3
 import time
 
 
-def check_avail(url, hdr, version):
-    http = urllib3.PoolManager()
-    response = http.request("GET", url, hdr)
-    soup = BeautifulSoup(response.data, "html.parser")
-    try:
-        span_text = soup.find_all("span", {"class": "rs2"})[0].text
-    # adding exception for index errors
-    except IndexError:
-        print("\033[93m INDEX ERROR \033[0;0m")
-        time.sleep(300)
-        span_text = soup.find_all("span", {"class": "rs2"})[0].text
-
-    current_time = time.strftime("%d-%m-%Y : %H:%M:%S", time.localtime())
-
-    if version == "3070":
-        if "Out of stock" not in span_text:
-            text = "3070 is in stock. Go to https://rptechindia.in/nvidia-geforce-rtx-3070.html"
-            chat_id = "1792211518"
-            bot_secret = "1871383574:AAFOCtshtRQx78qPZPEWGeODiP2cDYCkjDg"
-            data = {"text": f"{text}", "chat_id": f"{chat_id}"}
-            requests.post(
-                f"https://api.telegram.org/bot{bot_secret}/sendMessage", data=data
-            )
-            print(current_time, "3070 \033[1;32;40m IN STOCK \033[0;0m")
-        else:
-            print(current_time, "3070 \033[1;31;40m OUT OF STOCK \033[0;0m")
-
-    if version == "3060":
-        if "Out of stock" not in span_text:
-            text = "3060 is in stock. Go to https://rptechindia.in/nvidia-geforce-rtx-3060-ti.html"
-            chat_id = "1792211518"
-            bot_secret = "1871383574:AAFOCtshtRQx78qPZPEWGeODiP2cDYCkjDg"
-            data = {"text": f"{text}", "chat_id": f"{chat_id}"}
-            requests.post(
-                f"https://api.telegram.org/bot{bot_secret}/sendMessage", data=data
-            )
-            print(current_time, "3060 \033[1;32;40m IN STOCK \033[0;0m")
-        else:
-            print(current_time, "3060 \033[1;31;40m OUT OF STOCK \033[0;0m")
-
-
-def main():
-
-    url_3070 = "https://rptechindia.in/nvidia-geforce-rtx-3070.html"
-    url_3060 = "https://rptechindia.in/nvidia-geforce-rtx-3060-ti.html"
+def check_avail(version):
+    url = "https://rptechindia.in/nvidia-geforce-rtx-" + version + ".html"
     hdr = {
         "User-Agent": (
             "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 "
@@ -62,15 +19,43 @@ def main():
         "Accept-Language": "en-US,en;q=0.8",
         "Connection": "keep-alive",
     }
-    # checks for 3070
-    check_avail(url_3070, hdr, "3070")
+    http = urllib3.PoolManager()
+    response = http.request("GET", url, hdr)
+    soup = BeautifulSoup(response.data, "html.parser")
+    try:
+        span_text = soup.find_all("span", {"class": "rs2"})[0].text
+    # adding exception for index errors
+    except IndexError:
+        print("\033[93m INDEX ERROR \033[0;0m")
+        time.sleep(300)
+        span_text = soup.find_all("span", {"class": "rs2"})[0].text
 
-    # checks for 3060
-    check_avail(url_3060, hdr, "3060")
+    current_time = time.strftime("%d-%m-%Y : %H:%M:%S", time.localtime())
+
+    if "Out of stock" not in span_text:
+        text = (
+            version
+            + "is in stock. \nGo to https://rptechindia.in/nvidia-geforce-rtx-"
+            + version
+            + ".html"
+        )
+        chat_id = "1792211518"
+        bot_secret = "1871383574:AAFOCtshtRQx78qPZPEWGeODiP2cDYCkjDg"
+        data = {"text": f"{text}", "chat_id": f"{chat_id}"}
+        requests.post(
+            f"https://api.telegram.org/bot{bot_secret}/sendMessage", data=data
+        )
+        print(current_time, version + "\033[1;32;40m IN STOCK \033[0;0m")
+    else:
+        print(current_time, version + "\033[1;31;40m OUT OF STOCK \033[0;0m")
 
 
 if __name__ == "__main__":
     while True:
-        main()
+        # checks for 3070
+        check_avail("3070")
+
+        # checks for 3060
+        check_avail("3060-ti")
         # waits 10 minutes for next iteration
         time.sleep(600)
