@@ -5,3 +5,6 @@
 *.pyc
 bot_env/Lib/*
 bot_env/Scripts/*.exe
+bot_env/*.bat
+bot_env/*.ps1
+
