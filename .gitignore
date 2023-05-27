@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-.vscode
-=======
->>>>>>> bf37c75e2d75d6ecfefb40decf7678c839c4de9c
 *.pyc
-bot_env/Lib/*
-bot_env/Scripts/*.exe
-bot_env/*.bat
-bot_env/*.ps1
-
+bot_env/Scripts/
+.vscode/

@@ -5,6 +5,7 @@ import time
 
 
 def check_avail(version):
+    # url to check for
     url = "https://rptechindia.in/nvidia-geforce-rtx-" + version + ".html"
     hdr = {
         "User-Agent": (
@@ -39,6 +40,7 @@ def check_avail(version):
             + version
             + ".html"
         )
+        # enter telegram bot options here
         chat_id = "****"
         bot_secret = "******"
         data = {"text": f"{text}", "chat_id": f"{chat_id}"}
@@ -52,10 +54,10 @@ def check_avail(version):
 
 if __name__ == "__main__":
     while True:
-        # checks for 3070
+        # checks for RTX 3070
         check_avail("3070")
 
-        # checks for 3060
+        # checks for RTX 3060. I was cheap back then, but I got better
         check_avail("3060-ti")
-        # waits 10 minutes for next iteration
+        # waits 10 minutes for next iteration. Adjust accordingly
         time.sleep(600)
